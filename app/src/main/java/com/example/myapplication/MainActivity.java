@@ -48,7 +48,11 @@ public class MainActivity extends Activity {
                 Log.d(TAG, "Surface destroyed.");
             }
         });
-        version = CheckVersion.getGLSupportedVersion();
-        Log.d(TAG, "Current system OpenGLES 3.0/2.0 support = " + version.isGL30Supported + "/" + version.isGL20Supported);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                CheckVersion.getGLSupportedVersion();
+            }
+        }).start();
     }
 }
